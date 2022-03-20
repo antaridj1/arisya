@@ -66,9 +66,8 @@
         <!--**********************************
             Sidebar end
         ***********************************-->
-        <div class="content-body">
+        
             @yield('container')
-        </div>
         
         
     </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,9 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
-Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
+Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin')->middleware('guest');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

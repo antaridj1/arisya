@@ -17,10 +17,10 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-       if(Auth::guard('user')->attempt(['username' => $request->username, 'password'=> $request->password, 'status'=>'1']))
+       if(Auth::guard('web')->attempt(['username' => $request->username, 'password'=> $request->password, 'status'=>'1']))
        {   
             $request->session()->regenerate();
-             return redirect()->intended('/');
+             return redirect()->intended('dashboard');
         }
          else{
             return back()->with('message','Username atau password yang Anda masukkan salah')->with('gagal','error');
