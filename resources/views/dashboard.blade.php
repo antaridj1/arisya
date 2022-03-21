@@ -20,7 +20,7 @@
                 </div>
             </div>
         </a>
-        <a href="/dashboard/masyarakat" class="col-lg-6 col-sm-6">
+        <a href="barang/index" class="col-lg-6 col-sm-6">
             <div class="card gradient-2">
                 <div class="card-body">
                     <h3 class="card-title text-white">Barang</h3>

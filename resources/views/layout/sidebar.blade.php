@@ -7,17 +7,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/dashboard/gedung" aria-expanded="false">
+                        <a href="/penjualan" aria-expanded="false">
                             <i class="fa fa-building"></i></i><span class="nav-text">Penjualan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/dashboard/sarana" aria-expanded="false">
+                        <a href="{{route('barang.index')}}" aria-expanded="false">
                             <i class="fa fa-road"></i><span class="nav-text">Barang</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/dashboard/masyarakat" aria-expanded="false">
+                        <a href="/karyawan" aria-expanded="false">
                             <i class="fa fa-users"></i><span class="nav-text">Karyawan</span>
                         </a>
                     </li> 
