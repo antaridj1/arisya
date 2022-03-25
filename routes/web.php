@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,17 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('update/{barang}', [BarangController::class, 'update'])->name('update');
         Route::delete('delete/{barang}', [BarangController::class, 'destroy'])->name('delete');
     });
+
+    Route::group(['prefix' => 'karyawan', 'as' => 'karyawan.'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
+        Route::patch('update/{user}', [UserController::class, 'update'])->name('update');
+        Route::delete('delete/{user}', [UserController::class, 'destroy'])->name('delete');
+        Route::put('editStatus/{user}', [UserController::class, 'updateStatus'])->name('editStatus');
+    });
+
+    Route::get('/profil', [UserController::class, 'profil'])->name('profil');
+    Route::put('editpass/{user}', [UserController::class, 'updatePass'])->name('editpass');
 });

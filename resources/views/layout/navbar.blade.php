@@ -31,7 +31,7 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href="/profil"><i class="icon-user"></i> <span>Profile</span></a>
+                                    <a href="{{route('profil')}}"><i class="icon-user"></i> <span>Profile</span></a>
                                 </li>
                                 <hr class="my-2">
                                 <li><a href="/logout"><i class="icon-key"></i> <span>Logout</span></a></li>

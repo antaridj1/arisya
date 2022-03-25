@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable
 {
@@ -16,6 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    
     protected $fillable = [
         'nama',
         'username',
@@ -24,6 +27,13 @@ class User extends Authenticatable
         'telp',
         'isOwner',
         'status',
+    ];
+
+    protected $attributes = [
+        'status'=>true,
+        // 'username'=>Str::random(5)->unique(),
+        // 'password'=>Str::random(8),
+        'isOwner'=>false
     ];
 
     /**
@@ -41,4 +51,19 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+    public function scopeCari($query, array $cari){
+        $query->when($cari['search'] ?? false, function($query, $search) {
+            return $query->where('nama','like','%'.$search.'%')
+                        ->orWhere('telp','like','%'.$search.'%')
+                        ->orWhere('alamat','like','%'.$search.'%');
+        });
+    }
+    public function getUsername(){
+        do{
+            $username = Str::random(5);
+            $users = User::where('username',$username)->get();
+        } while(!empty($users->count()));
+
+        return $username;
+    }
 }
