@@ -19,6 +19,11 @@ class Barang extends Model
         'keterangan'
     ];
 
+    public function detail_barang()
+    {
+        return $this->hasMany(DetailBarang::class, 'barangs_id');
+    }
+
     public function scopeCari($query, array $cari){
         $query->when($cari['search'] ?? false, function($query, $search) {
             return $query->where('nama','like','%'.$search.'%')

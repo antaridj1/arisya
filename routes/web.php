@@ -31,22 +31,33 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'barang', 'as' => 'barang.'], function () {
         Route::get('/', [BarangController::class, 'index'])->name('index');
         Route::get('create', [BarangController::class, 'create'])->name('create');
-        Route::post('store', [BarangController::class, 'store'])->name('store');
+        Route::post('create', [BarangController::class, 'store'])->name('store');
         Route::get('edit/{barang}', [BarangController::class, 'edit'])->name('edit');
-        Route::patch('update/{barang}', [BarangController::class, 'update'])->name('update');
+        Route::patch('edit/{barang}', [BarangController::class, 'update'])->name('update');
         Route::delete('delete/{barang}', [BarangController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'karyawan', 'as' => 'karyawan.'], function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('create', [UserController::class, 'create'])->name('create');
-        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::post('create', [UserController::class, 'store'])->name('store');
         Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
-        Route::patch('update/{user}', [UserController::class, 'update'])->name('update');
+        Route::patch('edit/{user}', [UserController::class, 'update'])->name('update');
         Route::delete('delete/{user}', [UserController::class, 'destroy'])->name('delete');
         Route::put('editStatus/{user}', [UserController::class, 'updateStatus'])->name('editStatus');
     });
 
     Route::get('/profil', [UserController::class, 'profil'])->name('profil');
     Route::put('editpass/{user}', [UserController::class, 'updatePass'])->name('editpass');
+
+    Route::group(['prefix' => 'penjualan', 'as' => 'penjualan.'], function () {
+        Route::get('/', [PenjualanController::class, 'index'])->name('index');
+        Route::get('create', [PenjualanController::class, 'create'])->name('create');
+        Route::get('getBarang', [PenjualanController::class, 'getBarang'])->name('getBarang');
+        Route::post('create', [PenjualanController::class, 'store'])->name('store');
+        Route::get('edit/{penjualan}', [PenjualanController::class, 'edit'])->name('edit');
+        Route::patch('edit/{penjualan}', [PenjualanController::class, 'update'])->name('update');
+        Route::delete('delete/{penjualan}', [PenjualanController::class, 'destroy'])->name('delete');
+        Route::put('editStatus/{penjualan}', [PenjualanController::class, 'updateStatus'])->name('editStatus');
+    });
 });
