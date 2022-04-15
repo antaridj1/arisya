@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin')->middleware('guest');
+Route::get('/login', [AuthController::class, 'getLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
 Route::middleware(['auth'])->group(function () {

@@ -14,14 +14,74 @@ class BarangSeeder extends Seeder
      */
     public function run()
     {
-        Barang::create([
-            'nama'=>'Jati',
-            'ukuran'=>'6x12x2',
-            'harga_satuan'=>'120000',
-            'harga_kubik'=>'8000000',
-            'jumlah_per_kubik'=>'70',
-            'stok'=>'1200',
-            'keterangan'=>'tes'
-        ]);
+        $barangs = 
+        [
+            [
+                'nama'=>'Jati',
+                'ukuran'=>'6x12x2',
+                'harga_satuan'=>'120000',
+                'harga_paket'=>'8000000',
+                'jumlah_paket'=>'70',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Jati',
+                'ukuran'=>'6x15x2',
+                'harga_satuan'=>'150000',
+                'harga_paket'=>'8000000',
+                'jumlah_paket'=>'56',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Jati',
+                'ukuran'=>'4x12x2',
+                'harga_satuan'=>'70000',
+                'harga_paket'=>'8000000',
+                'jumlah_paket'=>'106',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Bayur',
+                'ukuran'=>'6x12x2',
+                'harga_satuan'=>'90000',
+                'harga_paket'=>'5000000',
+                'jumlah_paket'=>'70',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Bayur',
+                'ukuran'=>'6x15x2',
+                'harga_satuan'=>'120000',
+                'harga_paket'=>'5000000',
+                'jumlah_paket'=>'56',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Bayur',
+                'ukuran'=>'4x12x2',
+                'harga_satuan'=>'50000',
+                'harga_paket'=>'5000000',
+                'jumlah_paket'=>'106',
+                'stok'=>'1000',
+                'keterangan'=>'tes'
+            ],
+            [
+                'nama'=>'Ulin',
+                'harga_satuan'=>'180000',
+                'harga_paket'=>'216000000',
+                'jumlah_paket'=>'1200',
+                'stok'=>'5000',
+                'keterangan'=>'tes'
+            ]
+        ];
+
+        foreach($barangs as $barang){
+            Barang::create($barang);
+        }
     }
 }

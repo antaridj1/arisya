@@ -9,7 +9,7 @@ class Penjualan extends Model
 {
     use HasFactory;
 
-    protected $filled = [
+    protected $fillable = [
         'nama',
         'telp',
         'alamat',

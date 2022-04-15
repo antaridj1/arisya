@@ -39,10 +39,9 @@ class BarangController extends Controller
         try{
             $request->validate([
                 'nama'=> 'required',
-                'ukuran'=>'required',
                 'harga_satuan'=>'required',
-                'harga_kubik'=>'required',
-                'jumlah_per_kubik'=>'required',
+                'harga_paket'=>'required',
+                'jumlah_paket'=>'required',
                 'stok'=>'required',
                 'keterangan'=>'required'
             ]);
@@ -90,10 +89,9 @@ class BarangController extends Controller
         try{
             $request->validate([
                 'nama'=> 'required',
-                'ukuran'=>'required',
                 'harga_satuan'=>'required',
-                'harga_kubik'=>'required',
-                'jumlah_per_kubik'=>'required',
+                'harga_paket'=>'required',
+                'jumlah_paket'=>'required',
                 'stok'=>'required',
                 'keterangan'=>'required'
             ]);

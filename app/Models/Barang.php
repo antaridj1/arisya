@@ -13,8 +13,8 @@ class Barang extends Model
         'nama',
         'ukuran',
         'harga_satuan',
-        'harga_kubik',
-        'jumlah_per_kubik',
+        'harga_paket',
+        'jumlah_paket',
         'stok',
         'keterangan'
     ];
@@ -29,8 +29,8 @@ class Barang extends Model
             return $query->where('nama','like','%'.$search.'%')
                         ->orWhere('ukuran','like','%'.$search.'%')
                         ->orWhere('harga_satuan','like','%'.$search.'%')
-                        ->orWhere('harga_kubik','like','%'.$search.'%')
-                        ->orWhere('jumlah_per_kubik','like','%'.$search.'%');
+                        ->orWhere('harga_paket','like','%'.$search.'%')
+                        ->orWhere('jumlah_paket','like','%'.$search.'%');
         });
     }
 }

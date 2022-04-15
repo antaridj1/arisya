@@ -6,6 +6,7 @@ use App\Models\Penjualan;
 use App\Models\Barang;
 use App\Models\DetailBarang;
 use Illuminate\Http\Request;
+use Auth;
 
 class PenjualanController extends Controller
 {
@@ -46,20 +47,42 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        $barangs = collect($request->barang);
-        foreach ($barangs as $barang => $value) {
-            dd($barang);
-        }
-        Penjualan::create([
+        $reqBarang = collect($request->barang);
+        $reqJumlah = collect($request->jumlah);
+        $reqSatuan = collect($request->satuan);
+        $index = count($reqBarang);
+
+        $user_id = Auth::id();
+
+        $penjualan = Penjualan::create([
             'nama'=> $request->nama,
             'telp'=> $request->telp,
             'alamat'=> $request->alamat,
-            // 'total_harga'=>$total
+            'total_harga'=>$request->total_harga,
+            'karyawans_id' => $user_id
         ]);
 
-        // DetailBarang::create([
-        //     'barangs_id' => $request
-        // ])
+        for($i=0;$i<$index;$i++){
+            DetailBarang::create([
+                'barangs_id' => $reqBarang[$i],
+                'penjualans_id' => $penjualan->id,
+                'jumlah' => $reqJumlah[$i],
+                'satuan' => $reqSatuan[$i],
+            ]);
+
+            $stok = Barang::where('id',$reqBarang[$i])->value('stok');
+            if ($reqSatuan[$i] == "Paket"){
+                $jml_paket = Barang::where('id',$reqBarang[$i])->value('jumlah_paket');
+                $reqJumlah[$i] = $reqJumlah[$i] * $jml_paket;
+            }
+            $sisa = $stok - $reqJumlah[$i];
+            
+            Barang::where('id',$reqBarang[$i])->update([
+                'stok' => $sisa
+            ]);
+        }
+
+        return redirect('penjualan/create');
     }
 
     /**
