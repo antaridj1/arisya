@@ -27,7 +27,7 @@ class AuthController extends Controller
          }
      }
 
-    public function getLogout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
         session()->invalidate();

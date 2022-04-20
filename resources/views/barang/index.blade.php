@@ -61,8 +61,8 @@
                                 <td>{{$barang->nama}}</td>
                                 <td>{{$barang->ukuran}}</td>
                                 <td>{{$barang->harga_satuan}}</td>
-                                <td>{{$barang->harga_kubik}}</td>
-                                <td>{{$barang->jumlah_per_kubik}}</td>
+                                <td>{{$barang->harga_paket}}</td>
+                                <td>{{$barang->jumlah_paket}}</td>
                                 <td>{{$barang->stok}}</td>
                                 
                                 <td><a href="{{route('barang.index', $barang->id)}}" class="label label-primary" 

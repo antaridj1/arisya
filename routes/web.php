@@ -55,9 +55,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('create', [PenjualanController::class, 'create'])->name('create');
         Route::get('getBarang', [PenjualanController::class, 'getBarang'])->name('getBarang');
         Route::post('create', [PenjualanController::class, 'store'])->name('store');
-        Route::get('edit/{penjualan}', [PenjualanController::class, 'edit'])->name('edit');
-        Route::patch('edit/{penjualan}', [PenjualanController::class, 'update'])->name('update');
+        Route::patch('/{penjualan}', [PenjualanController::class, 'update'])->name('editStatus');
         Route::delete('delete/{penjualan}', [PenjualanController::class, 'destroy'])->name('delete');
-        Route::put('editStatus/{penjualan}', [PenjualanController::class, 'updateStatus'])->name('editStatus');
     });
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

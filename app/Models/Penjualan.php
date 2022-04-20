@@ -27,4 +27,16 @@ class Penjualan extends Model
     {
         return $this->hasMany(DetailBarang::class, 'penjualans_id');
     }
+
+    public function scopeFilter($query, array $filter){
+        $query->when($filter['search'] ?? false, function($query, $search) {
+            return $query->where('nama','like','%'.$search.'%')
+                        ->orWhere('alamat','like','%'.$search.'%')
+                        ->orWhere('telp','like','%'.$search.'%');          
+        });
+
+        $query->when($filter['status'] ?? false, function($query, $status){
+            return $query->where('status',$status);
+        });
+    }
 }

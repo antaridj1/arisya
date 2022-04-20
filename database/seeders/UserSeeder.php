@@ -14,23 +14,29 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'nama' => 'Dewita',
-            'username' => 'dewita123',
-            'password'=> bcrypt('123'),
-            'alamat'=> 'Jalan Imam Bojol No.1',
-            'telp'=>'089678678678',
-            'isOwner'=>true,
-            'status'=>true,
-        ],
-        [
-            'nama' => 'Antari',
-            'username' => 'antari123',
-            'password'=> bcrypt('123'),
-            'alamat'=> 'Jalan Imam Bojol No.2',
-            'telp'=>'089678678677',
-            'isOwner'=>false,
-            'status'=>true,
-        ]);
+        $users = [
+            [
+                'nama' => 'Dewita',
+                'username' => 'dewita123',
+                'password'=> bcrypt('123'),
+                'alamat'=> 'Jalan Imam Bojol No.1',
+                'telp'=>'089678678678',
+                'isOwner'=>true,
+                'status'=>true,
+            ],
+            [
+                'nama' => 'Antari',
+                'username' => 'antari123',
+                'password'=> bcrypt('123'),
+                'alamat'=> 'Jalan Imam Bojol No.2',
+                'telp'=>'089678678677',
+                'isOwner'=>false,
+                'status'=>true,
+            ]
+        ];
+
+        foreach($users as $user){
+            User::create($user);
+        }
     }
 }

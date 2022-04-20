@@ -61,6 +61,17 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+ /* UD ARISYA */
+
+.penjualan:hover{
+  background-color: rgba(205, 205, 205, 0.167);
+}
+
+input[type="search"]{
+ height: fit-content;
+}
+
 :root {
   --blue: #324cdd;
   --indigo: #6610f2;
@@ -200,7 +211,6 @@ a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
   a:hover {
-    color: #2e28f6;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -1816,9 +1826,9 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(117, 113, 249, 0.5); }
 
 .btn-secondary {
-  color: #212529;
-  background-color: #9097c4;
-  border-color: #9097c4; }
+  color: #585757;
+  background-color: #fff;
+  border-color: #d3d3d3; }
   .btn-secondary:hover {
     color: #fff;
     background-color: #7780b7;

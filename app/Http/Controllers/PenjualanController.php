@@ -15,9 +15,17 @@ class PenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('penjualan.index');
+    public function index(Request $request)
+    {   
+        
+        if(Auth::user()->isOwner == true){
+            $penjualans = Penjualan::orderBy('created_at','DESC')->filter(request(['status','search']))->paginate(10)->withQueryString();
+        }else{
+            $user_id = Auth::id();
+            $penjualans = Penjualan::orderBy('created_at','DESC')->where('karyawans_id',$user_id)->filter(request(['status','search']))->paginate(10)->withQueryString();
+        }
+        
+        return view('penjualan.index',compact('penjualans'));
     }
 
     /**
@@ -36,8 +44,6 @@ class PenjualanController extends Controller
         $barangs = Barang::all();
         return response()->json($barangs);
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -104,7 +110,7 @@ class PenjualanController extends Controller
      */
     public function edit(Penjualan $penjualan)
     {
-        //
+        
     }
 
     /**
@@ -114,9 +120,12 @@ class PenjualanController extends Controller
      * @param  \App\Models\Penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penjualan $penjualan)
+    public function update(Penjualan $penjualan)
     {
-        //
+        Penjualan::where('id',$penjualan->id)->update([
+            'status' => 1
+        ]);
+        return redirect('penjualan');
     }
 
     /**
