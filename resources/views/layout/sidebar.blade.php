@@ -19,6 +19,11 @@
                                 <i class="icon-chart"></i><span class="nav-text">Data Penjualan</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('pengeluaran.index') }}" aria-expanded="false">
+                                <i class="icon-chart"></i><span class="nav-text">Data Pengeluaran</span>
+                            </a>
+                        </li>
                         @if(auth()->user()->isOwner == true)
                         <li>
                             <a href="{{route('barang.index')}}" aria-expanded="false">

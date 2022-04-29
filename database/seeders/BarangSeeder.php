@@ -23,7 +23,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'8000000',
                 'jumlah_paket'=>'70',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Jati 6x12x2'
             ],
             [
                 'nama'=>'Jati',
@@ -32,7 +33,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'8000000',
                 'jumlah_paket'=>'56',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Jati 6x15x2'
             ],
             [
                 'nama'=>'Jati',
@@ -41,7 +43,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'8000000',
                 'jumlah_paket'=>'106',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Jati 4x12x2'
             ],
             [
                 'nama'=>'Bayur',
@@ -50,7 +53,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'5000000',
                 'jumlah_paket'=>'70',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Bayur 6x12x2'
             ],
             [
                 'nama'=>'Bayur',
@@ -59,7 +63,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'5000000',
                 'jumlah_paket'=>'56',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Bayur 6x15x2'
             ],
             [
                 'nama'=>'Bayur',
@@ -68,7 +73,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'5000000',
                 'jumlah_paket'=>'106',
                 'stok'=>'1000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Bayur 4x12x2',
             ],
             [
                 'nama'=>'Ulin',
@@ -76,7 +82,8 @@ class BarangSeeder extends Seeder
                 'harga_paket'=>'216000000',
                 'jumlah_paket'=>'1200',
                 'stok'=>'5000',
-                'keterangan'=>'tes'
+                'keterangan'=>'tes',
+                'slug'=>'Ulin'
             ]
         ];
 

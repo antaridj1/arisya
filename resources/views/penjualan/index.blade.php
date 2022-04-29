@@ -116,9 +116,33 @@
                             <small>Last updated {{ $penjualan->updated_at->diffForHumans()}}</small>
                             @if(auth()->user()->isOwner == false)
                                 <div>
-                                    <a href="{{ route('penjualan.delete',$penjualan->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                    <a href="{{ route('penjualan.delete',$penjualan->id) }}" data-toggle="modal" data-target="#deletePenjualan_{{$penjualan->id}}"
+                                          data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
                                         <i class="icon-trash p-3"></i>
                                     </a>
+                                    <div class="modal fade" id="deletePenjualan_{{$penjualan->id}}">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Hapus Data</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="post" action="{{ route('penjualan.delete',$penjualan->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <div class="form-group"> 
+                                                        <p>Apakah Anda yakin ingin menghapus data penjualan?</p>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary" >Hapus </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                     @if ($penjualan->status == false)
                                         <button type="button" class="btn btn-danger btn-xs ms-3 shadow-sm" data-toggle="modal" 
                                             data-target="#editStatus_{{$penjualan->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Status">
@@ -212,21 +236,26 @@
                                     <tbody>
                                         @php
                                             $tot = 0;
+                                            $jml = 0;
                                         @endphp
                                         @foreach ($penjualan->detail_barang as $barang)
                                         <tr>
                                             <td>{{ $barang->barang->nama }} {{ $barang->barang->ukuran }}</td>
-                                            <td>{{ $barang->jumlah }} {{ $barang->satuan }}</td>
+                                            
                                             @if ($barang->satuan == "Buah")
+                                                <td>{{ $barang->jumlah }} {{ $barang->satuan }}</td>
                                                 <td class="text-right">{{ number_format($barang->barang->harga_satuan,0) }}</td>
                                                 @php
                                                     $tot = $barang->barang->harga_satuan * $barang->jumlah;
                                                 @endphp
                                             @else
-                                                <td class="text-right">{{ number_format($barang->barang->harga_paket,0) }}</td>
                                                 @php
-                                                    $tot = $barang->barang->harga_paket * $barang->jumlah;
+                                                    $jml = $barang->jumlah/$barang->barang->jumlah_paket;
+                                                    $tot = $barang->barang->harga_paket * $jml;
                                                 @endphp
+                                                <td>{{ $jml }} {{ $barang->satuan }}</td>
+                                                <td class="text-right">{{ number_format($barang->barang->harga_paket,0) }}</td>
+                                                
                                             @endif
                                             <td class="text-right">{{ number_format($tot,0) }}</td>
                                         </tr>

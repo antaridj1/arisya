@@ -6,8 +6,9 @@ use App\Models\Penjualan;
 use App\Models\Barang;
 use App\Models\DetailBarang;
 use Illuminate\Http\Request;
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
+use Exception;
+use Illuminate\Support\Facades\Log;
 class PenjualanController extends Controller
 {
     /**
@@ -69,6 +70,10 @@ class PenjualanController extends Controller
         ]);
 
         for($i=0;$i<$index;$i++){
+            if ($reqSatuan[$i] == "Paket"){
+                $jml_paket = Barang::where('id',$reqBarang[$i])->value('jumlah_paket');
+                $reqJumlah[$i] = $reqJumlah[$i] * $jml_paket;
+            }
             DetailBarang::create([
                 'barangs_id' => $reqBarang[$i],
                 'penjualans_id' => $penjualan->id,
@@ -77,10 +82,6 @@ class PenjualanController extends Controller
             ]);
 
             $stok = Barang::where('id',$reqBarang[$i])->value('stok');
-            if ($reqSatuan[$i] == "Paket"){
-                $jml_paket = Barang::where('id',$reqBarang[$i])->value('jumlah_paket');
-                $reqJumlah[$i] = $reqJumlah[$i] * $jml_paket;
-            }
             $sisa = $stok - $reqJumlah[$i];
             
             Barang::where('id',$reqBarang[$i])->update([
@@ -136,6 +137,12 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
-        //
+        try{
+            $penjualan->delete();
+        }catch(Exception $e){
+            Log::info($e->getMessage());
+            return back()->withInput()->with('error', 'Gagal menghapus data penjualan');
+        }
+        return redirect('penjualan')->withInput()->with('success', 'Berhasil menghapus data penjualan');
     }
 }

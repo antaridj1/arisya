@@ -77,12 +77,12 @@
     <script src="{{asset('assets/js/settings.js')}}"></script>
     <script src="{{asset('assets/js/gleek.js')}}"></script>
     <script src="{{asset('assets/js/styleSwitcher.js')}}"></script>
-    <script src="{{asset('assets/plugins/morris/morris.min.js') }}"></script>
-    <script src="{{asset('assets/js/plugins-init/morris-init.js')}}"></script>
-    <script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
     <script src="{{asset('assets/plugins/toastr/js/toastr.min.js')}}"></script>
     <script src="{{asset('assets/plugins/toastr/js/toastr.init.js')}}"></script>
 
+    <script src="{{asset('assets/plugins/chartist/js/chartist.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PengeluaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard-chart', [DashboardController::class, 'getBarangs'])->name('getBarangs');
+    Route::get('/dashboard-chartt', [DashboardController::class, 'getJumlah'])->name('getJumlah');
 
     Route::group(['prefix' => 'barang', 'as' => 'barang.'], function () {
         Route::get('/', [BarangController::class, 'index'])->name('index');
@@ -57,6 +60,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('create', [PenjualanController::class, 'store'])->name('store');
         Route::patch('/{penjualan}', [PenjualanController::class, 'update'])->name('editStatus');
         Route::delete('delete/{penjualan}', [PenjualanController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'pengeluaran', 'as' => 'pengeluaran.'], function () {
+        Route::get('/', [PengeluaranController::class, 'index'])->name('index');
+        Route::post('/', [PengeluaranController::class, 'store'])->name('store');
+        Route::patch('/edit/{pengeluaran}', [PengeluaranController::class, 'update'])->name('update');
+        Route::delete('delete/{pengeluaran}', [PengeluaranController::class, 'destroy'])->name('delete');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

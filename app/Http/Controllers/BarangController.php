@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
-
+use Exception;
+use Illuminate\Support\Facades\Log;
 class BarangController extends Controller
 {
     /**
@@ -14,6 +15,8 @@ class BarangController extends Controller
      */
     public function index()
     {
+        // dd(Barang::groupBy('ukuran')->selectRaw('sum(harga_satuan) as sum, ukuran')->pluck('sum','ukuran'));
+        dd(Barang::selectRaw('MONTH(created_at) as month')->get());
         $barangs = Barang::cari(request(['search']))->paginate(10)->withQueryString();
         return view('barang.index',compact('barangs'));
     }
