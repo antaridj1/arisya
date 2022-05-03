@@ -28,8 +28,8 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/dashboard-chart', [DashboardController::class, 'getBarangs'])->name('getBarangs');
-    Route::get('/dashboard-chartt', [DashboardController::class, 'getJumlah'])->name('getJumlah');
+    Route::get('/dashboard-barang', [DashboardController::class, 'getBarangs'])->name('getBarangs');
+    Route::get('/dashboard-profit', [DashboardController::class, 'getProfit'])->name('getProfit');
 
     Route::group(['prefix' => 'barang', 'as' => 'barang.'], function () {
         Route::get('/', [BarangController::class, 'index'])->name('index');

@@ -78,8 +78,7 @@
 <script>
     
    //Distributed series
-$.get("{{ route('getBarangs') }}",function(barangs){
-    $.get("{{ route('getJumlah') }}",function(jumlah){
+$.get("{{ route('getBarangs') }}",function([barangs,jumlah]){
         new Chartist.Bar('#distributed-series', {
             labels: barangs,
             series: jumlah
@@ -89,26 +88,24 @@ $.get("{{ route('getBarangs') }}",function(barangs){
             Chartist.plugins.tooltip()
             ]
         });
-    });
 });
   
   
 </script>
 
 <script>
+ $.get("{{ route('getProfit') }}",function(profits){
 var data = {
-    labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
-    series: [
-      [1, 2, 4, 8, 6, -2, -1, -4, -6, -2]
-    ]
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Okt','Nov','Des'],
+    series: profits
   };
   
   var options = {
-    high: 10,
-    low: -10,
+    high: 100,
+    low: -100,
     axisX: {
       labelInterpolationFnc: function(value, index) {
-        return index % 2 === 0 ? value : null;
+        return value;
       }
     },
     plugins: [
@@ -117,6 +114,7 @@ var data = {
   };
   
   new Chartist.Bar('#bi-polar-bar', data, options);
+ });
 </script>
 
 @endpush
