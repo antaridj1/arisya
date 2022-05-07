@@ -41,7 +41,7 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
+
 
         <!--**********************************
             Nav header start
@@ -70,7 +70,7 @@
             @yield('container')
         
         
-    </div>
+
 
     <script src="{{asset('assets/plugins/common/common.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
