@@ -47,7 +47,9 @@
                                 </div>
                             </div>
                         </div>
-                    
+                        <div class="dropdown">
+                            <a href="/cetak" class="btn btn-secondary shadow-sm mr-2">Cetak PDF</a>
+                        </div>
                         <form action="/penjualan">
                             @if(request('status'))
                                 <input type="hidden" name="status" value="{{ request('status') }}">

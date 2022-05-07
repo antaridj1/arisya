@@ -145,4 +145,9 @@ class PenjualanController extends Controller
         }
         return redirect('penjualan')->withInput()->with('success', 'Berhasil menghapus data penjualan');
     }
+
+    public function cetak(){
+        $penjualas = Penjualan::all();
+        return view('penjualan.cetak',compact('penjualans'));
+    }
 }

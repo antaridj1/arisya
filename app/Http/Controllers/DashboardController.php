@@ -9,50 +9,30 @@ use App\Models\Pengeluaran;
 use App\Models\Penjualan;
 use Illuminate\Support\Arr;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function indexOwner(){
         $year = Carbon::now()->year;
-        $pengeluarans = Pengeluaran::selectRaw('year(created_at) year, monthname(created_at) month, sum(biaya)/1000000 as sum')
-                    ->whereYear('created_at',$year)
-                    ->groupBy('year','month')
-                    ->orderBy('month','DESC')
-                    ->get()->toArray();
-                    
-        $pemasukans = Penjualan::selectRaw('year(created_at) year, monthname(created_at) month, sum(total_harga)/1000000 as sum')
-                    ->whereYear('created_at',$year)
-                    ->groupBy('year','month')
-                    ->orderBy('month','DESC')
-                    ->get()->toArray();
-                    
-        $data_pengeluaran = [];
-        $data_pemasukan = [];
+        $penjualan = Penjualan::selectRaw('sum(total_harga) as sum')->whereYear('created_at',$year)->value('sum');
+        $pengeluaran = Pengeluaran::selectRaw('sum(biaya) as sum')->whereYear('created_at',$year)->value('sum');
+        $profit = $penjualan - $pengeluaran;
+        $stok_kosong = count(Barang::where('stok','0')->get());
+        $barang = DetailBarang::selectRaw('sum(jumlah) as sum')->whereYear('created_at',$year)->value('sum');
+        return view('dashboard-owner',compact(['penjualan','profit','stok_kosong','barang']));
+    }
 
-        $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        foreach ($months as $key => $month) {
-            $key = array_search($month, array_column($pengeluarans, 'month'));
-            $data = $key === false ? 0 : $pengeluarans[$key]['sum'];
-            array_push($data_pengeluaran, $data);
-        }
-
-        foreach ($months as $key => $month) {
-            $key = array_search($month, array_column($pemasukans, 'month'));
-
-            $data = $key === false ? 0 : $pemasukans[$key]['sum'];
-            array_push($data_pemasukan, $data);
-        }
-
-        $profits = collect();
-
-        foreach ($data_pemasukan as $key => $value) {
-            if(array_key_exists($key,$data_pemasukan) && array_key_exists($key,$data_pengeluaran)){
-                $profit = $data_pemasukan[$key] - $data_pengeluaran[$key];
-            }$profits->push($profit);
-        }
+    public function indexKaryawan(){
+        $year = Carbon::now()->year; 
         
-        
-        return view('dashboard');
+        $id = Auth::id();
+        $penjualans = Penjualan::where('karyawans_id',$id)->get();
+        $penjualan = Penjualan::where('karyawans_id',$id)->where('status','1')->orderBy('created_at','DESC')->first();
+        $belum_proses = $penjualans->where('status','0')->first();
+        $jml_belum_proses = count($penjualans->where('status','0'));
+        $penjualan_per_tahun = count(Penjualan::where('karyawans_id',$id)->whereYear('created_at',$year)->pluck('id'));
+        return view('dashboard-karyawan',compact(['penjualans','penjualan','belum_proses','penjualan_per_tahun','jml_belum_proses']));
     }
 
     public function getBarangs(){
@@ -63,13 +43,13 @@ class DashboardController extends Controller
 
     public function getProfit(){
         $year = Carbon::now()->year;
-        $pengeluarans = Pengeluaran::selectRaw('year(created_at) year, monthname(created_at) month, sum(biaya)/1000000 as sum')
+        $pengeluarans = Pengeluaran::selectRaw('year(created_at) year, monthname(created_at) month, sum(biaya) as sum')
                     ->whereYear('created_at',$year)
                     ->groupBy('year','month')
                     ->orderBy('month','DESC')
                     ->get()->toArray();
     
-        $pemasukans = Penjualan::selectRaw('year(created_at) year, monthname(created_at) month, sum(total_harga)/1000000 as sum')
+        $pemasukans = Penjualan::selectRaw('year(created_at) year, monthname(created_at) month, sum(total_harga) as sum')
                     ->whereYear('created_at',$year)
                     ->groupBy('year','month')
                     ->orderBy('month','DESC')
@@ -95,9 +75,8 @@ class DashboardController extends Controller
 
         foreach ($data_pemasukan as $key => $value) {
             if(array_key_exists($key,$data_pemasukan) && array_key_exists($key,$data_pengeluaran)){
-                $profit[$key] = $data_pengeluaran[$key] - $data_pemasukan[$key];
+                $profit[$key] = $data_pemasukan[$key]/1000000 - $data_pengeluaran[$key]/1000000;
             }
-            
         }
         $profits = [];
         array_push($profits,$profit);

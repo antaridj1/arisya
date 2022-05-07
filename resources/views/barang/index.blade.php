@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Data Barang</h4>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-end">
                             <form action="{{route('barang.index')}}">
                                 <div class="input-group">
                                     <input class="form-control border-end-0 border" type="search" placeholder="Search" id="example-search-input" aria-describedby="button-addon2" name="search" value="{{request('search')}}">
@@ -34,7 +34,10 @@
                                     </span>
                                 </div>
                             </form>
-                            <a href="{{route('barang.create')}}" class="btn btn-primary mt-2 mb-3">
+                            <div class="dropdown">
+                                <a href="{{ route('barang.cetak') }}" class="btn btn-secondary shadow-sm mx-2">Cetak PDF</a>
+                            </div>
+                            <a href="{{route('barang.create')}}" class="btn btn-primary mb-3">
                                 Tambahkan Data
                             </a>
                         </div>

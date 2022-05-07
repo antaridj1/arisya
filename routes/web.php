@@ -27,7 +27,8 @@ Route::get('/login', [AuthController::class, 'getLogin'])->name('login')->middle
 Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard-owner', [DashboardController::class, 'indexOwner']);
+    Route::get('/dashboard-karyawan', [DashboardController::class, 'indexKaryawan']);
     Route::get('/dashboard-barang', [DashboardController::class, 'getBarangs'])->name('getBarangs');
     Route::get('/dashboard-profit', [DashboardController::class, 'getProfit'])->name('getProfit');
 
@@ -38,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('edit/{barang}', [BarangController::class, 'edit'])->name('edit');
         Route::patch('edit/{barang}', [BarangController::class, 'update'])->name('update');
         Route::delete('delete/{barang}', [BarangController::class, 'destroy'])->name('delete');
+        Route::get('stok', [BarangController::class, 'getStok'])->name('getStok');
+        Route::patch('stok', [BarangController::class, 'postStok'])->name('postStok');
+        Route::get('cetak', [BarangController::class, 'cetak'])->name('cetak');
     });
 
     Route::group(['prefix' => 'karyawan', 'as' => 'karyawan.'], function () {
@@ -60,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('create', [PenjualanController::class, 'store'])->name('store');
         Route::patch('/{penjualan}', [PenjualanController::class, 'update'])->name('editStatus');
         Route::delete('delete/{penjualan}', [PenjualanController::class, 'destroy'])->name('delete');
+        Route::get('cetak', [PenjualanController::class, 'cetak'])->name('cetak');
     });
 
     Route::group(['prefix' => 'pengeluaran', 'as' => 'pengeluaran.'], function () {

@@ -2,9 +2,9 @@
 <div class="nav-header">
     <div class="brand-logo">
         <a href="index.html">
-            <b class="logo-abbr"><img src="{{asset('admin/images/kab_badung.png')}}" alt=""> </b>
+            <b class="logo-abbr"><img src="{{asset('assets/images/logo.png')}}" alt=""> </b>
             <span class="brand-title">
-                <img src="{{asset('assets/img/dpmptsp_logo.png')}}" width="200px" alt="">
+                <img src="{{asset('assets/images/logo-text.png')}}" width="140px" alt="">
             </span>
         </a>
     </div>
@@ -25,7 +25,7 @@
             <ul class="clearfix">
                 <li class="icons dropdown">
                     <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                        <img src="{{asset('admin/images/user.png')}}" height="40" width="40" alt="">
+                        <a href="#">Hi, {{ auth()->user()->nama }}</a>
                     </div>
                     <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                         <div class="dropdown-content-body">

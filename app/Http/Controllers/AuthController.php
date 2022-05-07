@@ -14,19 +14,22 @@ class AuthController extends Controller
     }
 
     public function postLogin(Request $request){
-         $login = $request->validate([
+        $login = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
        if(Auth::guard('web')->attempt(['username' => $request->username, 'password'=> $request->password, 'status'=>'1']))
-       {   
+        {   
             $request->session()->regenerate();
-             return redirect()->intended('dashboard');
-        }
-         else{
+            if(Auth::user()->isOwner == true){
+                return redirect()->intended('dashboard-owner');
+            }else{
+                return redirect()->intended('dashboard-karyawan');
+            }
+        }else{
             return back()->with('message','Username atau password yang Anda masukkan salah')->with('gagal','error');
-         }
+        }
      }
 
     public function logout(Request $request)

@@ -9,51 +9,54 @@
 <div class="content-body">
     <div class="container-fluid mt-3">
         <div class="row">
-            <a href="/dashboard/estimasi" class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card gradient-1">
                     <div class="card-body">
                         <h3 class="card-title text-white">Penjualan</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">54497</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white">{{ number_format($penjualan,0) }}</h2>
+                            <p class="text-white mb-0">Jan - Des 2022</p>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                        {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span> --}}
                     </div>
                 </div>
-            </a>
-            <a href="barang/index" class="col-lg-3 col-md-6 col-sm-12">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card gradient-2">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Barang</h3>
+                        <h3 class="card-title text-white">Profit</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white"></h2>
+                            <h2 class="text-white">{{ number_format($profit,0) }}</h2>
+                            <p class="text-white mb-0">Jan - Des 2022</p>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                        {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-dollar"></i></span> --}}
                     </div>
                 </div>
-            </a>
-            <a href="/dashboard/gedung" class="col-lg-3 col-md-6 col-sm-12">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card gradient-3">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Pembeli</h3>
+                        <h3 class="card-title text-white">Stok Kosong</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white"></h2>
+                            <h2 class="text-white">{{ $stok_kosong }}</h2>
+                            <p class="text-white mb-0">Jenis Barang</p>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-building"></i></span>
+                        {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-archive"></i></span> --}}
                     </div>
                 </div>
-            </a>
-            <a href="/dashboard/sarana" class="col-lg-3 col-md-6 col-sm-12">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card gradient-4">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Karyawan</h3>
+                        <h3 class="card-title text-white">Barang Terjual</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white"></h2>
+                            <h2 class="text-white">{{ $barang }}</h2>
+                            <p class="text-white mb-0">Jan - Des 2022</p>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-road"></i></span>
+                        {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-cart-arrow-down"></i></span> --}}
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <div class="d-flex justify-content-around">
@@ -101,8 +104,8 @@ var data = {
   };
   
   var options = {
-    high: 100,
-    low: -100,
+      
+    onlyInteger: true,
     axisX: {
       labelInterpolationFnc: function(value, index) {
         return value;

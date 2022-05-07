@@ -154,7 +154,7 @@ $(document).ready(function(){
                             '<tr id="'+barang.id+'">\
                                 <td>'+reqNama+'<input type="hidden" name="barang[]" value="'+barang.id+'"></td>\
                                 <td><div class="d-flex">\
-                                        <input type="number" class="form-control input-group-sm input" style="height:auto" min="1" value="1" name="jumlah[]">\
+                                        <input type="text" class="form-control input-group-sm input" style="height:auto" min="1" value="1" name="jumlah[]">\
                                         <select class="form-select custom-select" style="width:auto" name="satuan[]" aria-label=".form-select-sm example">\
                                             <option value="Buah">Buah</option>\
                                             <option value="Paket">Paket</option>\
@@ -187,7 +187,7 @@ $(document).ready(function(){
                 let harga_satuan = tr.eq(index).find('.harga_satuan');
                 let harga_paket = tr.eq(index).find('.harga_paket');
                 let harga_total = tr.eq(index).find('.total');
-                let input = tr.eq(index).find('input[type=number]');
+                let input = tr.eq(index).find('input[type=text]');
                 let select = tr.eq(index).find('select');
                 let hapus = tr.eq(index).find('.fa-trash');
 

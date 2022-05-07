@@ -67,7 +67,7 @@
                                     <label class="col-lg-4 col-form-label" for="harga_kubik">Harga per m3<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control @error('harga_kubik') is-invalid @enderror" id="harga_kubik" name="harga_kubik" value="{{$barang->harga_kubik}}">
+                                        <input type="text" class="form-control @error('harga_kubik') is-invalid @enderror" id="harga_kubik" name="harga_paket" value="{{$barang->harga_paket}}">
                                         @error('harga_kubik')
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -79,7 +79,7 @@
                                     <label class="col-lg-4 col-form-label" for="jumlah_per_kubik">Jumlah per m3<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control @error('jumlah_per_kubik') is-invalid @enderror" id="jumlah_per_kubik" name="jumlah_per_kubik" value="{{$barang->jumlah_per_kubik}}">
+                                        <input type="text" class="form-control @error('jumlah_per_kubik') is-invalid @enderror" id="jumlah_paket" name="jumlah_paket" value="{{$barang->jumlah_paket}}">
                                         @error('jumlah_per_kubik')
                                             <div class="invalid-feedback">
                                                 {{$message}}

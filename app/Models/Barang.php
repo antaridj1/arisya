@@ -18,6 +18,7 @@ class Barang extends Model
         'stok',
         'keterangan'
     ];
+    // protected $guarded = 'id';
 
     public function detail_barang()
     {

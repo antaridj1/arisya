@@ -3,7 +3,7 @@
 @section('title','Login | UD. Arisya')
 
 @section('container')
-<div class="content-body">
+<div class="content-body ml-0">
     <div class="login-form-bg">
         <div class="container">
             <div class="row justify-content-center">
@@ -11,8 +11,9 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html"> <h4>UD. ARISYA</h4></a>
-        
+                                <div class="text-center">
+                                    <img src="{{asset('assets/images/Logo-abu.png')}}" width="150px" alt="">
+                                </div>
                                 <form action="/login" method="post" class="mt-5 mb-5 login-input">
                                     @csrf
                                     <div class="form-group">
@@ -31,7 +32,6 @@
             </div>
         </div>
     </div>
-    <div class="content-body">
 @endsection
     
 
