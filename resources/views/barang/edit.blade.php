@@ -64,11 +64,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="harga_kubik">Harga per m3<span class="text-danger">*</span>
+                                    <label class="col-lg-4 col-form-label" for="harga_paket">Harga Paket<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control @error('harga_kubik') is-invalid @enderror" id="harga_kubik" name="harga_paket" value="{{$barang->harga_paket}}">
-                                        @error('harga_kubik')
+                                        <input type="text" class="form-control @error('harga_paket') is-invalid @enderror" id="harga_paket" name="harga_paket" value="{{$barang->harga_paket}}">
+                                        @error('harga_paket')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -76,11 +76,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="jumlah_per_kubik">Jumlah per m3<span class="text-danger">*</span>
+                                    <label class="col-lg-4 col-form-label" for="jumlah_per_paket">Jumlah per Paket<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control @error('jumlah_per_kubik') is-invalid @enderror" id="jumlah_paket" name="jumlah_paket" value="{{$barang->jumlah_paket}}">
-                                        @error('jumlah_per_kubik')
+                                        <input type="text" class="form-control @error('jumlah_per_paket') is-invalid @enderror" id="jumlah_paket" name="jumlah_paket" value="{{$barang->jumlah_paket}}">
+                                        @error('jumlah_per_paket')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>

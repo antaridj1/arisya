@@ -6,6 +6,8 @@ use App\Models\Barang;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
 class BarangController extends Controller
 {
     /**
@@ -33,21 +35,55 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
-        try{
+        if (!$request->ukuran)
+        {
             $request->validate([
                 'nama'=> 'required',
-                'harga_satuan'=>'required',
-                'harga_paket'=>'required',
-                'jumlah_paket'=>'required',
-                'stok'=>'required',
+                'harga_satuan'=>'required|numeric|min:1',
+                'harga_paket'=>'required|numeric|min:1',
+                'jumlah_paket'=>'required|numeric|min:1',
+                'stok'=>'required|numeric|min:0',
                 'keterangan'=>'required'
             ]);
 
-            Barang::create($request->all());
+            $slug = Str::of($request->nama)->append(' ')->append( $request->ukuran);
+            // $slug = Str::slug($text, '-');
 
-        }catch(Exception $e){
-            Log::info($e->getMessage());
-            return back()->withInput()->with('error', 'Gagal menambahkan barang');
+            Barang::create([
+                'nama'=> $request->nama,
+                'harga_satuan'=>$request->harga_satuan,
+                'harga_paket'=>$request->harga_paket,
+                'jumlah_paket'=>$request->jumlah_paket,
+                'stok'=>$request->stok,
+                'keterangan'=>$request->keterangan,
+                'slug'=>$slug,
+            ]);
+        }
+        else
+        {
+            $request->validate([
+                'nama'=> 'required',
+                'ukuran'=>'required',
+                'harga_satuan'=>'required|numeric|min:1',
+                'harga_paket'=>'required|numeric|min:1',
+                'jumlah_paket'=>'required|numeric|min:1',
+                'stok'=>'required|numeric|min:0',
+                'keterangan'=>'required'
+            ]);
+
+            $slug = Str::of($request->nama)->append(' ')->append( $request->ukuran);
+            // $slug = Str::slug($text, '-');
+
+            Barang::create([
+                'nama'=> $request->nama,
+                'ukuran'=>$request->ukuran,
+                'harga_satuan'=>$request->harga_satuan,
+                'harga_paket'=>$request->harga_paket,
+                'jumlah_paket'=>$request->jumlah_paket,
+                'stok'=>$request->stok,
+                'keterangan'=>$request->keterangan,
+                'slug'=>$slug,
+            ]);
         }
         return redirect('barang')->withInput()->with('success', 'Berhasil menambahkan barang');
     }
@@ -66,22 +102,31 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     { 
-
-      $edit = $request->validate([
-            'nama'=> 'required',
-            'ukuran'=>'required',
-            'harga_satuan'=>'required',
-            'harga_paket'=>'required',
-            'jumlah_paket'=>'required',
-            'stok'=>'required',
-            'keterangan'=>'required'
-        ]);
-       
-             $barang->update($edit);
-
-            return redirect('barang')->withInput()->with('success', 'Berhasil mengedit barang');
-    
-            // return back()->withInput()->with('error', 'Gagal mengedit barang');
+        if (!$request->ukuran)
+        {
+            $edit = $request->validate([
+                    'nama'=> 'required',
+                    'harga_satuan'=>'required|numeric|min:1',
+                    'harga_paket'=>'required|numeric|min:1',
+                    'jumlah_paket'=>'required|numeric|min:1',
+                    'stok'=>'required|numeric|min:0',
+                    'keterangan'=>'required'
+                    ]);
+        }
+        else
+        {
+            $edit = $request->validate([
+                'nama'=> 'required',
+                'ukuran' => 'required',
+                'harga_satuan'=>'required|numeric|min:1',
+                'harga_paket'=>'required|numeric|min:1',
+                'jumlah_paket'=>'required|numeric|min:1',
+                'stok'=>'required|numeric|min:0',
+                'keterangan'=>'required'
+                ]); 
+        }
+        $barang->update($edit);
+        return redirect('barang')->withInput()->with('success', 'Berhasil mengedit barang');
     }
 
     public function destroy(Barang $barang)

@@ -65,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/{penjualan}', [PenjualanController::class, 'update'])->name('editStatus');
         Route::delete('delete/{penjualan}', [PenjualanController::class, 'destroy'])->name('delete');
         Route::get('cetak', [PenjualanController::class, 'cetak'])->name('cetak');
+        Route::get('nota', [PenjualanController::class, 'nota'])->name('nota');
+        Route::get('cetak-nota', [PenjualanController::class, 'cetakNota'])->name('cetakNota');
     });
 
     Route::group(['prefix' => 'pengeluaran', 'as' => 'pengeluaran.'], function () {
@@ -72,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [PengeluaranController::class, 'store'])->name('store');
         Route::patch('/edit/{pengeluaran}', [PengeluaranController::class, 'update'])->name('update');
         Route::delete('delete/{pengeluaran}', [PengeluaranController::class, 'destroy'])->name('delete');
+        Route::get('cetak', [PengeluaranController::class, 'cetak'])->name('cetak');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

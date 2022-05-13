@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Data Pengeluaran</h4>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-end">
                             <form action="{{route('pengeluaran.index')}}">
                                 <div class="input-group">
                                     <input class="form-control border-end-0 border" type="search" placeholder="Search" id="example-search-input" aria-describedby="button-addon2" name="search" value="{{request('search')}}">
@@ -34,8 +34,10 @@
                                     </span>
                                 </div>
                             </form>
-
-                            <button type="button" class="btn btn-primary mt-2 mb-3" data-toggle="modal" data-target="#ModalTambah">
+                            <div class="dropdown">
+                                <a href="{{ route('pengeluaran.cetak') }}" class="btn btn-secondary shadow-sm mx-2">Cetak PDF</a>
+                            </div>
+                            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalTambah">
                                 Tambahkan Pengeluaran
                             </button>
                         
@@ -76,7 +78,7 @@
                                                 </div>
                                                 
                                                 <!-- Modal body -->
-                                                <div class="modal-body">
+                                                <div class="modal-body text-left">
                                                 <form method="post" action="{{route('pengeluaran.update', $pengeluaran->id)}}">
                                                     @method('patch')
                                                     @csrf

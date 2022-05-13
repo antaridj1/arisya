@@ -11,11 +11,6 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 class PenjualanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {   
         
@@ -29,11 +24,6 @@ class PenjualanController extends Controller
         return view('penjualan.index',compact('penjualans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {   
         $barangs = Barang::all();
@@ -46,12 +36,6 @@ class PenjualanController extends Controller
         return response()->json($barangs);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $reqBarang = collect($request->barang);
@@ -60,6 +44,12 @@ class PenjualanController extends Controller
         $index = count($reqBarang);
 
         $user_id = Auth::id();
+
+        $request->validate([
+            'nama'=> 'required',
+            'telp'=>'required',
+            'alamat'=>'required',
+        ]);
 
         $penjualan = Penjualan::create([
             'nama'=> $request->nama,
@@ -88,39 +78,9 @@ class PenjualanController extends Controller
                 'stok' => $sisa
             ]);
         }
-
-        return redirect('penjualan/create');
+        return redirect('penjualan/nota');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Penjualan  $penjualan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Penjualan $penjualan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Penjualan  $penjualan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Penjualan $penjualan)
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Penjualan  $penjualan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Penjualan $penjualan)
     {
         Penjualan::where('id',$penjualan->id)->update([
@@ -129,12 +89,6 @@ class PenjualanController extends Controller
         return redirect('penjualan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Penjualan  $penjualan
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Penjualan $penjualan)
     {
         try{
@@ -147,7 +101,17 @@ class PenjualanController extends Controller
     }
 
     public function cetak(){
-        $penjualas = Penjualan::all();
+        $penjualans = Penjualan::all();
         return view('penjualan.cetak',compact('penjualans'));
+    }
+
+    public function nota(){
+        $penjualan = Penjualan::where('karyawans_id',Auth::id())->orderBy('created_at','DESC')->first();
+        return view('penjualan.nota',compact('penjualan'));
+    }
+
+    public function cetakNota(){
+        $penjualan = Penjualan::where('karyawans_id',Auth::id())->orderBy('created_at','DESC')->first();
+        return view('penjualan.cetak-nota',compact('penjualan'));
     }
 }

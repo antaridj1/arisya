@@ -8,7 +8,6 @@
     <title>@yield('title')</title>
     
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
     <!-- Pignose Calender -->
     <link href="{{asset('assets/plugins/pg-calendar/css/pignose.calendar.min.css')}}" rel="stylesheet">
     <!-- Chartist -->
@@ -66,9 +65,9 @@
         <!--**********************************
             Sidebar end
         ***********************************-->
-        
+        <div id="main-wrapper">
             @yield('container')
-        
+        </div>
         
 
 

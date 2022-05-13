@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pengeluaran;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\PDF;
 
 class PengeluaranController extends Controller
 {
@@ -17,7 +18,7 @@ class PengeluaranController extends Controller
     
     public function index()
     {
-        $pengeluarans = Pengeluaran::cari(request(['search']))->paginate(10)->withQueryString();
+        $pengeluarans = Pengeluaran::orderBy('created_at','DESC')->cari(request(['search']))->paginate(10)->withQueryString();
         return view('pengeluaran.index',compact('pengeluarans'));
     }
 
@@ -26,7 +27,7 @@ class PengeluaranController extends Controller
         try{
             $request->validate([
                 'nama'=> 'required',
-                'biaya'=>'required',
+                'biaya'=>'required|numeric|min:1',
             ]);
 
             Pengeluaran::create($request->all());
@@ -43,7 +44,7 @@ class PengeluaranController extends Controller
         try{
             $request->validate([
                 'nama'=> 'required',
-                'biaya'=>'required'
+                'biaya'=>'required|numeric|min:1'
             ]);
 
             $pengeluaran->update($request->all());
@@ -64,5 +65,10 @@ class PengeluaranController extends Controller
             return back()->withInput()->with('error', 'Gagal menghapus pengeluaran');
         }
         return redirect('pengeluaran')->withInput()->with('success', 'Berhasil menghapus pengeluaran');
+    }
+
+    public function cetak(){
+        $pengeluarans = Pengeluaran::all();
+        return view('pengeluaran.cetak',compact('pengeluarans'));
     }
 }

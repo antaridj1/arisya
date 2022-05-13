@@ -5,17 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>@yield('title')</title>
+    <title>Cetak</title>
     
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
-    <!-- Pignose Calender -->
-    <link href="{{asset('assets/plugins/pg-calendar/css/pignose.calendar.min.css')}}" rel="stylesheet">
-    <!-- Chartist -->
-    <link rel="stylesheet" href="{{asset('assets/plugins/chartist/css/chartist.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
-    <!-- Custom Stylesheet -->
-    <link href="{{asset('assets/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     
 
@@ -34,8 +26,8 @@
                                     <th>Nama</th>
                                     <th>Ukuran</th>
                                     <th>Harga Satuan</th>
-                                    <th>Harga per m3</th>
-                                    <th>Jumlah per m3</th>
+                                    <th>Harga Paket</th>
+                                    <th>Jumlah per Paket</th>
                                     <th>Stok</th>
                                 </tr>
                             </thead>
@@ -69,15 +61,7 @@
 
     <script src="{{asset('assets/plugins/common/common.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
-    <script src="{{asset('assets/js/settings.js')}}"></script>
-    <script src="{{asset('assets/js/gleek.js')}}"></script>
-    <script src="{{asset('assets/js/styleSwitcher.js')}}"></script>
-    <script src="{{asset('assets/plugins/toastr/js/toastr.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/toastr/js/toastr.init.js')}}"></script>
 
-    <script src="{{asset('assets/plugins/chartist/js/chartist.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
-    @stack('scripts')
 </body>
 
 </html>

@@ -16,7 +16,8 @@ class Barang extends Model
         'harga_paket',
         'jumlah_paket',
         'stok',
-        'keterangan'
+        'keterangan',
+        'slug'
     ];
     // protected $guarded = 'id';
 

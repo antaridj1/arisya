@@ -50,8 +50,8 @@
                                     <th>Nama</th>
                                     <th>Ukuran</th>
                                     <th>Harga Satuan</th>
-                                    <th>Harga per m3</th>
-                                    <th>Jumlah per m3</th>
+                                    <th>Harga Paket</th>
+                                    <th>Jumlah per Paket</th>
                                     <th>Stok</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
