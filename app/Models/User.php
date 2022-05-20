@@ -58,12 +58,4 @@ class User extends Authenticatable
                         ->orWhere('alamat','like','%'.$search.'%');
         });
     }
-    public function getUsername(){
-        do{
-            $username = Str::random(5);
-            $users = User::where('username',$username)->get();
-        } while(!empty($users->count()));
-
-        return $username;
-    }
 }

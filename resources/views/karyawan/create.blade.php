@@ -62,6 +62,30 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="username">Username<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ @old('username') }}">
+                                        @error('username')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="password">Password<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ @old('password') }}">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
