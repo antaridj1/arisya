@@ -28,16 +28,16 @@ class UserController extends Controller
                 'nama'=> 'required',
                 'telp'=>'required',
                 'alamat'=>'required',
+                'username'=>'required',
+                'password'=>'required',
             ]);
-            
-            $username = User::getUsername();
-
+    
             User::create([
                 'nama'=>$request->nama,
                 'telp'=>$request->telp,
                 'alamat'=>$request->alamat,
-                'username'=>$username,
-                'password'=>bcrypt('karyawan123')
+                'username'=>$request->username,
+                'password'=>bcrypt($request->password)
             ]);
 
         }catch(Exception $e){
