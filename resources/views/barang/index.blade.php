@@ -63,8 +63,8 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$barang->nama}}</td>
                                 <td>{{$barang->ukuran}}</td>
-                                <td>{{$barang->harga_satuan}}</td>
-                                <td>{{$barang->harga_paket}}</td>
+                                <td>{{number_format($barang->harga_satuan,0)}}</td>
+                                <td>{{number_format($barang->harga_paket,0)}}</td>
                                 <td>{{$barang->jumlah_paket}}</td>
                                 <td>{{$barang->stok}}</td>
                                 
