@@ -36,7 +36,9 @@ class PengeluaranController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal menambahkan pengeluaran');
         }
-        return redirect('pengeluaran')->withInput()->with('success', 'Berhasil menambahkan pengeluaran');
+        return redirect('pengeluaran')
+            ->with('status','success')
+            ->with('message','Berhasil menambahkan data');
     }
 
     public function update(Request $request, Pengeluaran $pengeluaran)
@@ -53,7 +55,9 @@ class PengeluaranController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal mengedit pengeluaran');
         }
-        return redirect('pengeluaran')->withInput()->with('success', 'Berhasil mengedit pengeluaran');
+        return redirect('pengeluaran')
+            ->with('status','success')
+            ->with('message','Berhasil mengedit data');
     }
 
     public function destroy(pengeluaran $pengeluaran)
@@ -64,7 +68,9 @@ class PengeluaranController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal menghapus pengeluaran');
         }
-        return redirect('pengeluaran')->withInput()->with('success', 'Berhasil menghapus pengeluaran');
+        return redirect('pengeluaran')
+            ->with('status','success')
+            ->with('message','Berhasil menghapus data');
     }
 
     public function cetak(){

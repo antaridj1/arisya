@@ -42,9 +42,13 @@ class UserController extends Controller
 
         }catch(Exception $e){
             Log::info($e->getMessage());
-            return back()->withInput()->with('error', 'Gagal menambahkan karyawan');
+            return back()
+                ->with('status','error')
+                ->with('message','Gagal menambahkan karyawan');
         }
-        return redirect('karyawan')->withInput()->with('success', 'Berhasil menambahkan karyawan');
+        return redirect('karyawan')
+            ->with('status','success')
+            ->with('message','Berhasil menambahkan karyawan');
     }
 
     public function edit(User $karyawan)
@@ -68,7 +72,9 @@ class UserController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal mengedit user');
         }
-        return redirect('profil')->withInput()->with('success', 'Berhasil mengedit user');
+        return redirect()->back()
+            ->with('status','success')
+            ->with('message','Data telah diubah');
     }
 
     public function updateStatus(Request $request, User $user)
@@ -78,7 +84,9 @@ class UserController extends Controller
         }else{
             $user->update(['status'=>true]);
         }
-        return redirect('karyawan');
+        return redirect()->back()
+            ->with('status','success')
+            ->with('message','Status telah diubah');
     }
 
     /**
@@ -114,8 +122,12 @@ class UserController extends Controller
                 'password'=>bcrypt($request->password_baru)
             ]);
         }else{
-            return back()->with('update_gagal','error');
+            return redirect()->back()
+            ->with('status','error')
+            ->with('message','Password gagal diubah');
         }
-        return redirect('profil')->with('update_berhasil','success');
+        return redirect()->back()
+            ->with('status','success')
+            ->with('message','Password berhasil diubah');
     }
 }

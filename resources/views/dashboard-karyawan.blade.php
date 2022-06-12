@@ -108,7 +108,7 @@
                 <div>
                     <p class="text-muted">Penjualan Terakhir Anda</p>
                 </div>
-                @if($penjualan->count() > 0)
+                @if($penjualan !== null)
                     <div class="card border-primary">
                             <div class="card-header pb-0">
                                 <div class="d-flex justify-content-between">

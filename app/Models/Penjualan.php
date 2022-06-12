@@ -32,7 +32,8 @@ class Penjualan extends Model
         $query->when($filter['search'] ?? false, function($query, $search) {
             return $query->where('nama','like','%'.$search.'%')
                         ->orWhere('alamat','like','%'.$search.'%')
-                        ->orWhere('telp','like','%'.$search.'%');          
+                        ->orWhere('telp','like','%'.$search.'%')
+                        ->orWhere('created_at','like','%'.$search.'%');          
         });
 
         $query->when($filter['status'] ?? false, function($query, $status){

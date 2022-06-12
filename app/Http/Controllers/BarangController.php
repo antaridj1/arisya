@@ -85,7 +85,9 @@ class BarangController extends Controller
                 'slug'=>$slug,
             ]);
         }
-        return redirect('barang')->withInput()->with('success', 'Berhasil menambahkan barang');
+        return redirect('barang')
+            ->with('status','success')
+            ->with('message','Berhasil menambahkan data');
     }
 
     public function edit(Barang $barang)
@@ -126,7 +128,9 @@ class BarangController extends Controller
                 ]); 
         }
         $barang->update($edit);
-        return redirect('barang')->withInput()->with('success', 'Berhasil mengedit barang');
+        return redirect('barang')
+            ->with('status','success')
+            ->with('message','Berhasil mengedit data');
     }
 
     public function destroy(Barang $barang)
@@ -137,7 +141,9 @@ class BarangController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal menghapus barang');
         }
-        return redirect('barang')->withInput()->with('success', 'Berhasil menghapus barang');
+        return redirect('barang')
+            ->with('status','success')
+            ->with('message','Berhasil menghapus data');
     }
 
     public function getStok(){
@@ -158,7 +164,9 @@ class BarangController extends Controller
             'stok' => $stok_baru
         ]);
 
-        return redirect('barang/stok');
+        return redirect('barang')
+            ->with('status','success')
+            ->with('message','Berhasil menambahkan stok');
     }
 
     public function cetak(){

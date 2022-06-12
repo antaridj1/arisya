@@ -50,7 +50,11 @@
                     <div class="card-body">
                         <h3 class="card-title text-white">Barang Terjual </h3>
                         <div class="d-inline-block">
+                            @if ($barang !== null)
                             <h2 class="text-white">{{ $barang }}</h2>
+                            @else
+                            <h2 class="text-white">0</h2>
+                            @endif
                             <p class="text-white mb-0">Jan - {{ $month }} {{ $year}}</p>
                         </div>
                         {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-cart-arrow-down"></i></span> --}}
@@ -59,14 +63,14 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-around">
-            <div class="card col-lg-6 col-md-12 col-sm-12 m-1">
+        <div class="row">
+            <div class="card col-lg-12 col-md-12 col-sm-12">
                 <div class="card-body">
                         <h4 class="card-title">Grafik Barang Terjual Tahun {{ $year }}</h4>
                     <div id="distributed-series" class="ct-chart ct-golden-section"></div>
                 </div>
             </div>
-            <div class="card col-lg-6 col-md-12 col-sm-12 m-1">
+            <div class="card col-lg-12 col-md-12 col-sm-12">
                 <div class="card-body">
                     <h4 class="card-title">Grafik Laba Rugi Tahun {{ $year }}</h4>
                     

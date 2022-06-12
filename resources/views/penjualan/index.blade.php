@@ -82,7 +82,7 @@
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
                                 <p><b>{{ $penjualan->nama }}</b> ({{$penjualan->telp}})</p>
-                                <small>{{$penjualan->created_at->format('d M Y')}}</small>
+                                <small>{{$penjualan->created_at->format('d/m/Y')}}</small>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">  
@@ -281,7 +281,9 @@
         </div>
     </div>
 </div>
-
+@if(session()->has('status'))
+    @include('layout.alert')
+@endif
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){

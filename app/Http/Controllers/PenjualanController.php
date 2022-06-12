@@ -78,7 +78,9 @@ class PenjualanController extends Controller
                 'stok' => $sisa
             ]);
         }
-        return redirect('penjualan/nota');
+        return redirect('penjualan')
+            ->with('status','success')
+            ->with('message','Berhasil menambahkan data');
     }
 
     public function update(Penjualan $penjualan)
@@ -86,7 +88,9 @@ class PenjualanController extends Controller
         Penjualan::where('id',$penjualan->id)->update([
             'status' => 1
         ]);
-        return redirect('penjualan');
+        return redirect('penjualan')
+            ->with('status','success')
+            ->with('message','Berhasil mengedit data');
     }
 
     public function destroy(Penjualan $penjualan)
@@ -97,7 +101,9 @@ class PenjualanController extends Controller
             Log::info($e->getMessage());
             return back()->withInput()->with('error', 'Gagal menghapus data penjualan');
         }
-        return redirect('penjualan')->withInput()->with('success', 'Berhasil menghapus data penjualan');
+        return redirect('penjualan')
+            ->with('status','success')
+            ->with('message','Berhasil menghapus data');
     }
 
     public function cetak(){
