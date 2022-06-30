@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penjualan;
 use App\Models\Barang;
 use App\Models\DetailBarang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -13,15 +14,20 @@ class PenjualanController extends Controller
 {
     public function index(Request $request)
     {   
-        
+        $date = null;
+        if($request->daterange){
+            $date = $request->daterange;
+            $request['daterange'] = explode(' - ',$request->daterange);
+        }
         if(Auth::user()->isOwner == true){
-            $penjualans = Penjualan::orderBy('created_at','DESC')->filter(request(['status','search']))->paginate(10)->withQueryString();
+            $penjualans = Penjualan::orderBy('created_at','DESC')->filter(request(['status','search','daterange']))->paginate(10)->withQueryString();
         }else{
             $user_id = Auth::id();
-            $penjualans = Penjualan::orderBy('created_at','DESC')->where('karyawans_id',$user_id)->filter(request(['status','search']))->paginate(10)->withQueryString();
+            $penjualans = Penjualan::orderBy('created_at','DESC')->where('karyawans_id',$user_id)->filter(request(['status','search','daterange']))->paginate(10)->withQueryString();
         }
+
+        return view('penjualan.index',compact(['penjualans','date']));
         
-        return view('penjualan.index',compact('penjualans'));
     }
 
     public function create()

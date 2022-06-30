@@ -39,7 +39,7 @@
                         <h3 class="card-title text-white">Stok Kosong</h3>
                         <div class="d-inline-block">
                             <h2 class="text-white">{{ $stok_kosong }}</h2>
-                            <p class="text-white mb-0">Jenis Barang</p>
+                            <p class="text-white mb-0">Hari Ini</p>
                         </div>
                         {{-- <span class="float-right display-5 opacity-5"><i class="fa fa-archive"></i></span> --}}
                     </div>
