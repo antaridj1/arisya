@@ -13,8 +13,18 @@
     <!-- Chartist -->
     <link rel="stylesheet" href="{{asset('assets/plugins/chartist/css/chartist.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
+    <link href="{{asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.css')}}" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="{{asset('assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css')}}" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="{{asset('assets/plugins/toastr/css/toastr.min.css')}}" rel="stylesheet">
+     <link href="{{asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
+    <!-- Daterange picker plugins css -->
+    <link href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     
 
@@ -81,6 +91,21 @@
 
     <script src="{{asset('assets/plugins/chartist/js/chartist.min.js')}}"></script>
     <script src="{{asset('assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/moment/moment.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+    <!-- Clock Plugin JavaScript -->
+    <script src="{{asset('assets/plugins/clockpicker/dist/jquery-clockpicker.min.js')}}"></script>
+      <!-- Date Picker Plugin JavaScript -->
+    <script src="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+    <!-- Color Picker Plugin JavaScript -->
+    <script src="{{asset('assets/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js')}}"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+
+    <script src="{{asset('assets/js/plugins-init/form-pickers-init.js')}}"></script>
     @stack('scripts')
 </body>
 

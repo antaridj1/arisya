@@ -40,11 +40,14 @@ class DashboardController extends Controller
         $year = Carbon::now()->year;
 
         $barangs = Barang::pluck('slug');
-        $jumlah = DetailBarang::selectRaw('year(created_at) year, barangs_id, sum(jumlah) as sum')
-                ->whereYear('created_at',$year)
-                ->groupBy('year','barangs_id')
-                ->orderBy('barangs_id')
-                ->pluck('sum');
+        $jumlah = DetailBarang::whereHas('penjualan',function($q){
+            $q->where('status',true);
+        })
+            ->selectRaw('year(created_at) year, barangs_id, sum(jumlah) as sum')
+            ->whereYear('created_at',$year)
+            ->groupBy('year','barangs_id')
+            ->orderBy('barangs_id')
+            ->pluck('sum');
         //$jumlah = DetailBarang::orderBy('barangs_id')->groupBy('barangs_id')->selectRaw('sum(jumlah) as sum')->pluck('sum');
         return response()->json(array($barangs,$jumlah));
     }
@@ -58,7 +61,7 @@ class DashboardController extends Controller
                     ->get()->toArray();
     
         $pemasukans = Penjualan::selectRaw('year(created_at) year, monthname(created_at) month, sum(total_harga) as sum')
-                    ->where('status',1)
+                    ->where('status',true)
                     ->whereYear('created_at',$year)
                     ->groupBy('year','month')
                     ->orderBy('month','DESC')

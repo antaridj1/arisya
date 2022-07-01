@@ -11,6 +11,16 @@
 <div class="content-body">
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
+            <div>
+                <h4 class="d-inline" style="color: black;">Data Penjualan</h4>
+                @if(auth()->user()->isOwner == false)
+                    <p class="text-muted">Anda telah menangani sebanyak {{ $penjualans->count() }} transaksi </p>
+                @else
+                    <p class="text-muted">Total transaksi sebanyak {{ $penjualans->count() }} penjualan </p>
+                @endif
+            </div>
+        </div>
+        <div class="col p-md-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">penjualan</a></li>
@@ -22,14 +32,28 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-                    <div>
-                        <h4 class="d-inline">Data Penjualan</h4>
-                        @if(auth()->user()->isOwner == false)
-                            <p class="text-muted">Anda telah menangani sebanyak {{ $penjualans->count() }} transaksi </p>
-                        @else
-                            <p class="text-muted">Total transaksi sebanyak {{ $penjualans->count() }} penjualan </p>
-                        @endif
-                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span>Filter data dari tanggal:</span>
+                        </div>
+                        <div class="col-8 mb-3">
+                            <form action="/penjualan">
+                                @if(request('status'))
+                                    <input type="hidden" name="status" value="{{ request('status') }}">
+                                @endif 
+                                <div class="d-flex justify-content-center">
+                                    <input class="form-control border-end-0 border input-daterange-datepicker " type="text" 
+                                        name="daterange" value="{{ ($date == null)? '' : $date }} ">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-secondary border-start-0 border-bottom-0 border" type="submit" >
+                                            <i class="fa fa-filter"></i>  Filter
+                                        </button>
+                                    </span>
+                                
+                            </div>
+                        </form>
+                        </div>
+                </div>
                     <div class="d-flex">
                         <div class="basic-dropdown">
                             <div class="dropdown">
@@ -47,9 +71,11 @@
                                 </div>
                             </div>
                         </div>
+                        @if(auth()->user()->isOwner == true)
                         <div class="dropdown">
                             <a href="{{ route('penjualan.cetak') }}" class="btn btn-secondary shadow-sm mr-2">Cetak PDF</a>
                         </div>
+                        @endif
                         <form action="/penjualan">
                             @if(request('status'))
                                 <input type="hidden" name="status" value="{{ request('status') }}">
@@ -286,9 +312,11 @@
         </div>
     </div>
 </div>
+
 @if(session()->has('status'))
     @include('layout.alert')
 @endif
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
