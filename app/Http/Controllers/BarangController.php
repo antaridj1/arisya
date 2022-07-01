@@ -104,6 +104,8 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     { 
+        $slug = Str::of($request->nama)->append(' ')->append( $request->ukuran);
+
         if (!$request->ukuran)
         {
             $edit = $request->validate([
@@ -127,7 +129,16 @@ class BarangController extends Controller
                 'keterangan'=>'required'
                 ]); 
         }
-        $barang->update($edit);
+        $barang->update([
+            'nama'=> $request->nama,
+            'ukuran' => $request->ukuran,
+            'harga_satuan'=>$request->harga_satuan,
+            'harga_paket'=>$request->harga_paket,
+            'jumlah_paket'=>$request->jumlah_paket,
+            'stok'=>$request->stok,
+            'keterangan'=>$request->keterangan,
+            'slug'=>$slug
+        ]);
         return redirect('barang')
             ->with('status','success')
             ->with('message','Berhasil mengedit data');

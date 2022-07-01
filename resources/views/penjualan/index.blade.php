@@ -249,7 +249,12 @@
                                     @endif
                                     <tr>
                                         <td>Status</td>
+                                        @if($penjualan->status == '1')
+                                        <td>: Sudah Diproses</td>
+                                        @else
                                         <td>: Belum Diproses</td>
+                                        @endif
+
                                     </tr>
                                 </table>
                                 <table class="table col-12">
