@@ -106,6 +106,8 @@
     <script src="{{asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins-init/form-pickers-init.js')}}"></script>
+    <script src="{{asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins-init/chartjs-init.js')}}"></script>
     @stack('scripts')
 </body>
 

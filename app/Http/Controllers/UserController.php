@@ -95,9 +95,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try{
+            $user->delete();
+        }catch(Exception $e){
+            Log::info($e->getMessage());
+            return back()->withInput()->with('error', 'Gagal menghapus data karyawan');
+        }
+        return redirect('karyawan')
+            ->with('status','success')
+            ->with('message','Berhasil menghapus karyawan');
     }
 
     public function profil(){

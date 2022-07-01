@@ -63,11 +63,18 @@
             </div>
         </div>
 
+        
         <div class="row">
-            <div class="card col-lg-12 col-md-12 col-sm-12">
+            {{-- <div class="card col-lg-12 col-md-12 col-sm-12">
                 <div class="card-body">
                         <h4 class="card-title">Grafik Barang Terjual Tahun {{ $year }}</h4>
                     <div id="distributed-series" class="ct-chart ct-golden-section"></div>
+                </div>
+            </div> --}}
+            <div class="card col-lg-12 col-md-12 col-sm-12">
+                <div class="card-body">
+                    <h4 class="card-title">Grafik Barang Terjual Tahun {{ $year }}</h4>
+                    <canvas id="singelBarChart" width="500" height="250"></canvas>
                 </div>
             </div>
             <div class="card col-lg-12 col-md-12 col-sm-12">
@@ -83,7 +90,7 @@
 </div>
 
 @push('scripts')
-<script>
+{{-- <script>
     
    //Distributed series
 $.get("{{ route('getBarangs') }}",function([barangs,jumlah]){
@@ -97,7 +104,7 @@ $.get("{{ route('getBarangs') }}",function([barangs,jumlah]){
         ]
     });
 });
-</script>
+</script> --}}
 
 <script>
 $.get("{{ route('getProfit') }}",function(profits){
@@ -120,6 +127,36 @@ $.get("{{ route('getProfit') }}",function(profits){
     };
     
     new Chartist.Bar('#bi-polar-bar', data, options);
+});
+
+// single bar chart
+$.get("{{ route('getBarangs') }}",function([barangs,jumlah]){
+var ctx = document.getElementById("singelBarChart");
+    ctx.height = 150;
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: barangs,
+            datasets: [
+                {
+                    label: "Barang",
+                    data: jumlah,
+                    borderColor: "rgba(117, 113, 249, 0.9)",
+                    borderWidth: "0",
+                    backgroundColor: "rgba(117, 113, 249, 0.5)"
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 });
 
 </script>

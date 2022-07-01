@@ -48,6 +48,7 @@
                                     <th>Telp</th>
                                     <th>Alamat</th>
                                     <th>Status</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,6 +99,37 @@
                                               </form>
                                             </div>
                                           </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div>
+                                        <a href="{{ route('karyawan.delete',$karyawan->id) }}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletekaryawan_{{$karyawan->id}}"
+                                              data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                             Hapus
+                                        </a>
+                                        <div class="modal fade" id="deletekaryawan_{{$karyawan->id}}">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Hapus Data</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post" action="{{ route('karyawan.delete',$karyawan->id) }}">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <div class="form-group"> 
+                                                            <p>Apakah Anda yakin ingin menghapus data karyawan?</p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary" >Hapus </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </div>
                                       </div>
                                     </td>
