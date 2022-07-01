@@ -58,6 +58,7 @@ class DashboardController extends Controller
                     ->get()->toArray();
     
         $pemasukans = Penjualan::selectRaw('year(created_at) year, monthname(created_at) month, sum(total_harga) as sum')
+                    ->where('status',1)
                     ->whereYear('created_at',$year)
                     ->groupBy('year','month')
                     ->orderBy('month','DESC')
