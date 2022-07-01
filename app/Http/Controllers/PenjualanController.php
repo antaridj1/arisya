@@ -84,7 +84,7 @@ class PenjualanController extends Controller
                 'stok' => $sisa
             ]);
         }
-        return redirect('penjualan/cetak-nota')
+        return redirect('penjualan/nota')
             ->with('status','success')
             ->with('message','Berhasil menambahkan data');
     }

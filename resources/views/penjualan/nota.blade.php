@@ -103,4 +103,7 @@
     </div>
 </div>
 
+@if(session()->has('status'))
+    @include('layout.alert')
+@endif
 @endsection
