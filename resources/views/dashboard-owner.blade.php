@@ -93,7 +93,7 @@
 {{-- <script>
     
    //Distributed series
-$.get("{{ route('getBarangs') }}",function([barangs,jumlah]){
+$.get("{{ route('getBarangs') }}",function(barangs,jumlah){
     new Chartist.Bar('#distributed-series', {
         labels: barangs,
         series: jumlah
