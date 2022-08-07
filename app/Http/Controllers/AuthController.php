@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -19,7 +20,10 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-       if(Auth::guard('web')->attempt(['username' => $request->username, 'password'=> $request->password, 'status'=>'1']))
+        $username = User::where('username',$request->username)->value('username');
+        $password = User::where('username',$request->username)->value('password');
+dd(bcrypt($request->password));
+        if(Auth::guard('web')->attempt(['username' => $request->username, 'password'=> $request->password, 'status'=>'1']))
         {   
             $request->session()->regenerate();
             if(Auth::user()->isOwner == true){
@@ -27,8 +31,12 @@ class AuthController extends Controller
             }else{
                 return redirect()->intended('dashboard-karyawan');
             }
-        }else{
-            return back()->with('message','Username atau password yang Anda masukkan salah')->with('gagal','error');
+        }elseif($request->username == $username && bcrypt($request->password) !== $password){
+            return back()->with('message','Password yang Anda masukkan salah')->with('status','error');
+        }elseif($request->username !== $username && bcrypt($request->password) == $password){
+            return back()->with('message','Username yang Anda masukkan salah')->with('status','error');
+        }elseif($request->username !== $username && bcrypt($request->password) !== $password){
+            return back()->with('message','Username dan password yang Anda masukkan salah')->with('status','error');
         }
      }
 
