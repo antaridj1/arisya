@@ -4,7 +4,6 @@
 
 @section('container')
 
-
 @include('layout.navbar')
 @include('layout.sidebar')
 
@@ -41,7 +40,6 @@
                                 Tambahkan Data
                             </a>
                         </div>
-
                         <div class="table-responsive">
                         <table class="table table-striped table-bordered text-center">
                             <thead>
