@@ -18,10 +18,20 @@
                                 <form action="/login" method="post" class="mt-5 mb-5 login-input">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Username" name="username">
+                                        <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Username" name="username">
+                                        @error('username')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password" name="password">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
                                 </form>
